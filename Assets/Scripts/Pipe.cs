@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class Pipe : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public float speed;
+    public float minX;
+    public float maxX;
 
-    // Update is called once per frame
+
+    private void Start()
+    {
+        minX = Camera.main.ViewportToWorldPoint(new Vector3(0, 0)).x -1;
+        maxX= Camera.main.ViewportToWorldPoint(new Vector3(1, 0)).x + 1;
+    }
     void Update()
     {
-        
+        transform.position += Vector3.left * speed * Time.deltaTime;
+
+        if(transform.position.x<minX)
+        {
+            transform.position = new Vector3(maxX,transform.position.y,0);
+        }
     }
 }
