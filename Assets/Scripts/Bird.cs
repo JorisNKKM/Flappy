@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 using TMPro;
 
+
 public class Bird : MonoBehaviour
 {
     public float jumpSpeed = 5;
@@ -12,11 +13,32 @@ public class Bird : MonoBehaviour
     public TMP_Text scoreText;
     public float speed;
     public GameObject endscreen;
+    public GameObject yellowbird;
+    public GameObject redbird;
+    public GameObject bluebird;
 
-     void Start()
+    void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        
+        int num = Random.Range(0, 2);
+        if (num == 0)
+        {
+            yellowbird.SetActive(true);
+            redbird.SetActive(false);
+            bluebird.SetActive(false);
+        }
+        if (num == 1)
+        {
+            yellowbird.SetActive(false);
+            redbird.SetActive(true);
+            bluebird.SetActive(false);
+        }
+        if (num == 2)
+        {
+            yellowbird.SetActive(false);
+            redbird.SetActive(false);
+            bluebird.SetActive(true);
+        }
 
     }
     void Update()
@@ -45,10 +67,9 @@ public class Bird : MonoBehaviour
         speed = 0;
         Pipe.speed = 0;
         Invoke("ShowMenu", 1f);
+        
 
 
-        //var currentScene = SceneManager.GetActiveScene().name;
-        //SceneManager.LoadScene(currentScene);
     }
 
     void ShowMenu()

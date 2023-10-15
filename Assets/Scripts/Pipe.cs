@@ -20,7 +20,8 @@ public class Pipe : MonoBehaviour
 
         if(transform.position.x<minX)
         {
-            transform.position = new Vector3(maxX,transform.position.y,0);
+            var height = Random.Range(1f, 5f);
+            transform.position = new Vector3(maxX,height,0);
         }
     }
 }
